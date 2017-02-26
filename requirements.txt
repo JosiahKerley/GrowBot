@@ -1,0 +1,12 @@
+virtualenv
+Django
+djangorestframework
+markdown
+django-filter
+django-solo
+jsonschema
+argparse
+requests
+ConfigParser
+coreapi
+coreapi-cli

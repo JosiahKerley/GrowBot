@@ -1,0 +1,7 @@
+*.sqlite3
+.idea
+*.pyc
+env
+migrations/*
+*.dump
+nohup.out
