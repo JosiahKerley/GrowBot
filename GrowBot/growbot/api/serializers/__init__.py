@@ -12,4 +12,9 @@ class PowerOutletSerializer(serializers.ModelSerializer):
     model = PowerOutlet
     fields = '__all__'
 
+class CameraSnapshotSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = CameraSnapshot
+    fields = '__all__'
+
 

@@ -25,10 +25,18 @@ setup: build
 	bash .makescripts/setup.sh
 
 ## Running
+shell: setup
+	. env/bin/activate; cd GrowBot; python manage.py shell
 run: setup stop
 	. env/bin/activate; cd GrowBot; python manage.py runserver
+redis-server:
+	if ! netstat -tulpn | grep 6379 > /dev/null; then systemctl start redis || service redis start || echo cannot start redis; fi
+runworker: build redis-server
+	. env/bin/activate; cd GrowBot; celery -A growbot worker -l info -b redis://localhost:6379/0
+workerstatus: setup redis-server
+	. env/bin/activate; cd GrowBot; celery -A growbot status -b redis://localhost:6379/0
 stop: test-requires
-	INSTANCE=`netstat -tulpn | awk '/8000/{print $$7}'`; if echo $${INSTANCE} | grep -E 'python'; then kill `echo $${INSTANCE} | cut -d'/' -f1`; fi
+	INSTANCE=`netstat -tulpn | awk '/8000/{print $$7}'`; if echo $${INSTANCE} | grep -E 'python'; then kill `echo $${INSTANCE} | cut -d'/' -f1`; sleep 2; kill -9 `echo $${INSTANCE} | cut -d'/' -f1`; fi
 
 ## Cleaning up
 clean: stop

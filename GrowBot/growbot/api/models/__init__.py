@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from solo.models import SingletonModel
+from camera import *
 from powerswitch import *
 
 ## Site config model
