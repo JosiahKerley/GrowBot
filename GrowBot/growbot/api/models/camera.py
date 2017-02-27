@@ -50,7 +50,6 @@ class CameraSnapshot(models.Model):
   @staticmethod
   @Async.task()
   def takeSnapshot(imagename,camera):
-    print name
     import pygame.camera
     import pygame.image
     pygame.camera.init()

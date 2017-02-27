@@ -24,12 +24,13 @@
 </div>
 <div class="text-center">
     <h2>Cameras</h2>
+    <div class="container">
+        <div class="btn-toolbar" role="group" >
     {% for snapshot in snapshots %}
-    <span>{{ snapshot.image.imagename }}</span>
-    <div class="col-md-6">
-        <img class="img-thumbnail" width="320px" src="{{ snapshot.image.url }}" />
-    </div>
+            <img class="img-thumbnail" width="320px" src="{{ snapshot.image.url }}" />
     {% endfor %}
+        </div>
+    </div>
 
     <h2>Outputs</h2>
     <div class="container">
