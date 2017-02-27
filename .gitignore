@@ -5,3 +5,4 @@ env
 migrations/*
 *.dump
 nohup.out
+GrowBot/static/*
