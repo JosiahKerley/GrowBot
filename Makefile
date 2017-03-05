@@ -12,7 +12,7 @@ test-requires:
 
 ## Building
 pkg-install: env
-	. env/bin/activate; pip install https://github.com/JosiahKerley/dgi-webpowerswitch/archive/master.zip; pip install .
+	. env/bin/activate; pip install .
 build: pkg-install
 	bash .makescripts/build.sh
 
@@ -31,8 +31,12 @@ run: setup stop
 	. env/bin/activate; cd GrowBot; python manage.py runserver
 redis-server:
 	if ! netstat -tulpn | grep 6379 > /dev/null; then systemctl start redis || service redis start || echo cannot start redis; fi
-runworker: build redis-server
+#runworker: build redis-server
+runworker:
 	. env/bin/activate; cd GrowBot; celery -A growbot worker -l info -b redis://localhost:6379/0
+#runbeat: build redis-server
+runbeat:
+	. env/bin/activate; cd GrowBot; celery -A growbot beat -l debug -b redis://localhost:6379/0
 workerstatus: setup redis-server
 	. env/bin/activate; cd GrowBot; celery -A growbot status -b redis://localhost:6379/0
 stop: test-requires

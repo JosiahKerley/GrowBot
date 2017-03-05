@@ -4,7 +4,6 @@ from growbot.celery import *
 from django.conf import settings
 from django.core.files import File
 from django.db.models import signals
-from DGIWebPowerSwitch import Control
 from solo.models import SingletonModel
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError

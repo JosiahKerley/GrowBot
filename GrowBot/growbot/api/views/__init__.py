@@ -14,6 +14,25 @@ class CameraSnapshotViewSet(viewsets.ModelViewSet):
   queryset = CameraSnapshot.objects.all()
   serializer_class = CameraSnapshotSerializer
 
+class SimpleTimerViewSet(viewsets.ModelViewSet):
+  queryset = SimpleTimer.objects.all()
+  serializer_class = SimpleTimerSerializer
+
+
+
+class PWMViewSet(viewsets.ModelViewSet):
+  queryset = PWM.objects.all()
+  serializer_class = PWMSerializer
+class KnobViewSet(viewsets.ModelViewSet):
+  queryset = Knob.objects.all()
+  serializer_class = KnobSerializer
+class LineCrossViewSet(viewsets.ModelViewSet):
+  queryset = LineCross.objects.all()
+  serializer_class = LineCrossSerializer
+class LoggerViewSet(viewsets.ModelViewSet):
+  queryset = Logger.objects.all()
+  serializer_class = LoggerSerializer
+
 
 
 

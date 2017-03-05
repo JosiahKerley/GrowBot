@@ -22,13 +22,18 @@ router = routers.DefaultRouter()
 router.register(r'power', views.PowerSwitchViewSet)
 router.register(r'outlet', views.PowerOutletViewSet)
 router.register(r'snapshot', views.CameraSnapshotViewSet)
+router.register(r'timer', views.SimpleTimerViewSet)
+router.register(r'controls/pwm', views.PWMViewSet)
+router.register(r'controls/knob', views.KnobViewSet)
+router.register(r'controls/line', views.LineCrossViewSet)
+router.register(r'controls/log', views.LoggerViewSet)
 urlpatterns = [
   url(r'^accounts/profile/', lambda r: HttpResponseRedirect('dashboard/')),
-  url(r'^$', lambda r: HttpResponseRedirect('dashboard/')),
   url(r'^dashboard/*', DashboardView.as_view(),name='dashboard'),
-  url(r'^api/*', include(router.urls)),
+  url(r'^', include(router.urls)),
   url(r'^admin/', admin.site.urls),
   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
   url(regex=r'^login/$',view=login,kwargs={'template_name': 'dashboard/login.html'},name='login'),
   url(regex=r'^logout/$',view=logout,kwargs={'next_page': '/'},name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root='/')
+#  url(r'^$', lambda r: HttpResponseRedirect('dashboard/')),
